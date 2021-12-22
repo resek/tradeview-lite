@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import Tradeview from '../pages/Tradeview.vue'
 
 const routes = [
+  { path: '/', redirect: '/tradeview' },
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: '/tradeview',
+    component: Tradeview
   }
 ]
 
