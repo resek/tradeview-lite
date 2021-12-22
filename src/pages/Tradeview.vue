@@ -1,7 +1,7 @@
 <template>
-  <div id="tradeview">
+  <div>
     <Spinner v-if="!(tradingPairs && selectedPairData)" />
-    <div v-else>
+    <template v-else>
       <select v-model="selectedPair">
         <option
           v-for="pair in tradingPairs"
@@ -13,7 +13,7 @@
       </select>
       <span>Price: {{ selectedPairData.last }}</span>
       <OrderBook :selected-pair="selectedPair" />
-    </div>
+    </template>
   </div>
 </template>
 
@@ -33,7 +33,7 @@ export default {
     }
   },
   watch: {
-    selectedPair (newQuestion) {
+    selectedPair () {
       this.selectedPairData = null
       this.getCurrencyPair()
     }
