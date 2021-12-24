@@ -83,8 +83,8 @@ export default {
       try {
         const response = await axios.get(`/api/v2/order_book/${this.selectedPair}`)
         console.log('response', response)
-        if (response?.data?.asks?.length > 0) this.asks = response.data.asks.slice(0, 1000)
-        if (response?.data?.bids?.length > 0) this.bids = response.data.bids.slice(0, 1000)
+        if (response?.data?.asks?.length > 0) this.asks = response.data.asks.slice(0, 500)
+        if (response?.data?.bids?.length > 0) this.bids = response.data.bids.slice(0, 500)
       } catch (e) {
         console.log('Failed to fetch', e)
       }
@@ -99,11 +99,13 @@ export default {
 
 <style scoped>
 #order-book {
-  color: #9598A2;
+  color: var(--text-light-color);
+  display: grid;
+  grid-template-rows: auto 1fr;
 }
 
 #header {
-  background-color: #202124;
+  background-color: var(--box-header-color);
   padding: 7px 20px;
   border-radius: 3px 3px 0px 0px;
   font-size: 0.8rem;
@@ -111,18 +113,20 @@ export default {
 
 #table {
   display: grid;
-  grid-template-rows: auto;
+  grid-template-rows: auto 1fr;
+  min-height: 0;
+  background: var(--background-secondary-color);
 }
 
 #table-head {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 5px 0;
-  background-color: #1D1D21;
-  border-top: 1px solid #313337;
-  border-bottom: 1px solid #313337;
+  background-color: var(--table-header-color);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   font-size: 0.8rem;
-  color: #58595c;
+  color: var(--text-dark-color);;
 }
 
 #table-head > span {
@@ -145,8 +149,6 @@ export default {
 }
 
 #table-body {
-  height: 200px;
-  background: #18191B;
   border-radius: 0px 0px 3px 3px;
   overflow-y: scroll;
 }
@@ -178,13 +180,13 @@ export default {
 }
 
 #ask-col {
-  color: #fa4141;
+  color: var(--ask-color);
   justify-self: start;
   transition: 0.5s color;
 }
 
 #bid-col {
-  color: green;
+  color: var(--bid-color);
   transition: 0.5s color;
 }
 

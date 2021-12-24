@@ -8,14 +8,14 @@
 .loader,
 .loader:before,
 .loader:after {
-  background: #159f48;
+  background: var(--bid-color);
   -webkit-animation: load1 1s infinite ease-in-out;
   animation: load1 1s infinite ease-in-out;
   width: 1em;
   height: 4em;
 }
 .loader {
-  color: #159f48;
+  color: var(--bid-color);
   text-indent: -9999em;
   margin: 88px auto;
   position: relative;

@@ -1,5 +1,5 @@
 <template>
-  <div id="buySell">
+  <div id="buy-sell">
     test
   </div>
 </template>
@@ -12,7 +12,7 @@ export default {
 
 <style>
 
-#buySell {
+#buy-sell {
   width: 100px;
   height: 100px;
   background-color: red;

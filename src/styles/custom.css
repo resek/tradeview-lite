@@ -1,5 +1,17 @@
+:root {
+  --background-color: #313337;
+  --background-secondary-color: #18191B;
+  --text-dark-color: #58595c;
+  --text-light-color: #9598A2;
+  --bid-color: #159f48;
+  --ask-color: #fa4141;
+  --border-color: #313337;
+  --box-header-color: #202124;
+  --table-header-color: #1D1D21;
+}
+
 .scrollbar {
-    scrollbar-color: white rgba(255, 0, 0, 0);
+    scrollbar-color: var(--text-dark-color) rgba(255, 0, 0, 0);
     scrollbar-width: thin;
 }
 
@@ -12,12 +24,12 @@
 }
   
 .scrollbar::-webkit-scrollbar-thumb {
-    background: #ababa9;
+    background: var(--text-dark-color);
     border-radius: 100vw;
 }
 
 .scrollbar::-webkit-scrollbar-thumb:hover {
-  background: white;
+  background: var(--text-light-color);
 }
 
 .animation-enter-from {
@@ -28,6 +40,6 @@
   transition: all 0.3s ease-in;
 }
   
-  .animation-enter-to {
+.animation-enter-to {
   opacity: 1;
 }

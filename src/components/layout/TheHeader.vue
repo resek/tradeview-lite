@@ -25,7 +25,7 @@ export default {
 header {
   width: 100%;
   height: 3rem;
-  background-color: #18191B;
+  background-color: var(--background-secondary-color);
   display: grid;
   align-items: center;
 }
@@ -34,7 +34,7 @@ header nav {
   width: 90%;
   margin: auto;
   font-size: 0.8rem;
-  color: #58595c;
+  color: var(--text-dark-color);
   display: grid;
   align-items: center;
   grid-template-columns: min-content min-content;

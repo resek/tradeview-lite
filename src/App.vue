@@ -26,7 +26,7 @@ html {
 
 body {
   margin: 0;
-  background: #313337;
+  background: var(--background-color);
 
 }
 </style>

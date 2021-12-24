@@ -1,21 +1,19 @@
 <template>
   <Spinner v-if="!fetchedData" />
-  <transition name="animation">
-    <div
-      v-if="fetchedData"
-      id="tradeview"
-    >
-      <div id="price-select">
-        <span>Price: {{ selectedPairPrices.last }}</span>
-        <SelectPairs
-          :trading-pairs="tradingPairs"
-          @update-selected-pair="updateSelectedPair"
-        />
-      </div>
-      <BuySell />
-      <OrderBook :selected-pair="selectedPair" />
+  <div
+    v-if="fetchedData"
+    id="tradeview"
+  >
+    <div id="price-select">
+      <span>Price: {{ selectedPairPrices.last }}</span>
+      <SelectPairs
+        :trading-pairs="tradingPairs"
+        @update-selected-pair="updateSelectedPair"
+      />
     </div>
-  </transition>
+    <BuySell />
+    <OrderBook :selected-pair="selectedPair" />
+  </div>
 </template>
 
 <script>
@@ -96,7 +94,7 @@ export default {
 
 #price-select > span {
   margin-right: 2rem;
-  color: green;
+  color: blue;
 }
 
 @media (min-width: 1800px) {
