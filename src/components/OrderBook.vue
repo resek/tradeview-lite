@@ -22,7 +22,7 @@
         id="table-body"
         class="scrollbar"
       >
-        <transition name="order-book">
+        <transition name="animation">
           <div v-if="asks && bids">
             <div id="bids">
               <div
@@ -72,14 +72,19 @@ export default {
   created () {
     this.getOrderBook()
   },
+  updated () {
+    this.asks = null
+    this.bids = null
+    this.getOrderBook()
+  },
   methods: {
     async getOrderBook () {
       console.log('getOrderBook')
       try {
         const response = await axios.get(`/api/v2/order_book/${this.selectedPair}`)
         console.log('response', response)
-        if (response?.data?.asks?.length > 0) this.asks = response.data.asks.slice(0, 100)
-        if (response?.data?.bids?.length > 0) this.bids = response.data.bids.slice(0, 100)
+        if (response?.data?.asks?.length > 0) this.asks = response.data.asks.slice(0, 1000)
+        if (response?.data?.bids?.length > 0) this.bids = response.data.bids.slice(0, 1000)
       } catch (e) {
         console.log('Failed to fetch', e)
       }
@@ -93,16 +98,12 @@ export default {
 </script>
 
 <style scoped>
-@import '../styles/scrollbar.css';
-
 #order-book {
-  margin: 5px;
   color: #9598A2;
-  max-width: 70%;
 }
 
 #header {
-  background: #202124;
+  background-color: #202124;
   padding: 7px 20px;
   border-radius: 3px 3px 0px 0px;
   font-size: 0.8rem;
@@ -117,11 +118,11 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 5px 0;
-  background: #1D1D21;
+  background-color: #1D1D21;
   border-top: 1px solid #313337;
   border-bottom: 1px solid #313337;
   font-size: 0.8rem;
-  color: #4B4D51;
+  color: #58595c;
 }
 
 #table-head > span {
@@ -190,19 +191,5 @@ export default {
 #bid-col:hover, #ask-col:hover {
   color: white;
   cursor: pointer
-}
-
-.order-book-enter-from,
-.order-book-leave-to {
-  opacity: 0;
-}
-
-.order-book-enter-active {
-  transition: all 0.3s ease-in;
-}
-
-.order-book-enter-to,
-.order-book-leave-from {
-  opacity: 1;
 }
 </style>
