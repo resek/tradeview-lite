@@ -69,12 +69,14 @@ export default {
       bids: null
     }
   },
-  created () {
-    this.getOrderBook()
+  watch: {
+    selectedPair: function () {
+      this.asks = null
+      this.bids = null
+      this.getOrderBook()
+    }
   },
-  updated () {
-    this.asks = null
-    this.bids = null
+  created () {
     this.getOrderBook()
   },
   methods: {
@@ -102,6 +104,7 @@ export default {
   color: var(--text-light-color);
   display: grid;
   grid-template-rows: auto 1fr;
+  grid-column: 1 / 3;
 }
 
 #header {

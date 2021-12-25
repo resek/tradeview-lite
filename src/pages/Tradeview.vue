@@ -1,18 +1,18 @@
 <template>
-  <Spinner v-if="!fetchedData" />
-  <div
-    v-if="fetchedData"
-    id="tradeview"
-  >
-    <div id="price-select">
-      <span>Price: {{ selectedPairPrices.last }}</span>
-      <SelectPairs
+  <div id="page">
+    <Spinner v-if="!(tradingPairs && selectedPairPrices)" />
+    <div
+      v-else
+      id="tradeview"
+    >
+      <SelectPair
         :trading-pairs="tradingPairs"
+        :selected-pair-prices="selectedPairPrices"
         @update-selected-pair="updateSelectedPair"
       />
+      <BuySell />
+      <OrderBook :selected-pair="selectedPair" />
     </div>
-    <BuySell />
-    <OrderBook :selected-pair="selectedPair" />
   </div>
 </template>
 
@@ -20,24 +20,19 @@
 import axios from 'axios'
 import OrderBook from '../components/OrderBook'
 import BuySell from '../components/BuySell'
-import SelectPairs from '../components/SelectPairs'
+import SelectPair from '../components/SelectPair'
 
 export default {
   components: {
     OrderBook,
     BuySell,
-    SelectPairs
+    SelectPair
   },
   data () {
     return {
       tradingPairs: null,
       selectedPair: 'btcusd',
       selectedPairPrices: null
-    }
-  },
-  computed: {
-    fetchedData () {
-      return this.tradingPairs && this.selectedPairPrices
     }
   },
   created () {
@@ -74,27 +69,24 @@ export default {
 </script>
 
 <style scoped>
+#page {
+  display: grid;
+  height: calc(100vh - 3rem);
+}
+
 #tradeview {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 40% 60%;
   width: 80%;
   margin: auto;
-  height: calc(100vh - 3rem);
+  margin-top: 0.5rem;
+  gap: 0.5rem;
+  height: calc(100vh - 4.5rem);
 }
 
-#order-book {
-  grid-column: 1 / 3;
-}
-
-#price-select {
-  justify-self: center;
+.spinner {
   align-self: center;
-}
-
-#price-select > span {
-  margin-right: 2rem;
-  color: blue;
 }
 
 @media (min-width: 1800px) {
@@ -103,7 +95,7 @@ export default {
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1100px) {
   #tradeview {
     width: 95%
   }

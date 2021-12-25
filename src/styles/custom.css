@@ -37,7 +37,7 @@
 }
   
 .animation-enter-active {
-  transition: all 0.3s ease-in;
+  transition: opacity 0.25s ease-out;
 }
   
 .animation-enter-to {
