@@ -29,4 +29,8 @@ body {
   background: var(--background-color);
 
 }
+
+#app {
+  height: 100vh
+}
 </style>

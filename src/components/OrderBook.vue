@@ -18,6 +18,7 @@
           <span>Sum</span>
         </span>
       </div>
+      <Spinner v-if="!(asks && bids)" />
       <div
         id="table-body"
         class="scrollbar"
@@ -60,7 +61,7 @@ export default {
   props: {
     selectedPair: {
       type: String,
-      default: null
+      default: 'btcusd'
     }
   },
   data () {
@@ -81,10 +82,8 @@ export default {
   },
   methods: {
     async getOrderBook () {
-      console.log('getOrderBook')
       try {
         const response = await axios.get(`/api/v2/order_book/${this.selectedPair}`)
-        console.log('response', response)
         if (response?.data?.asks?.length > 0) this.asks = response.data.asks.slice(0, 500)
         if (response?.data?.bids?.length > 0) this.bids = response.data.bids.slice(0, 500)
       } catch (e) {
@@ -119,6 +118,7 @@ export default {
   grid-template-rows: auto 1fr;
   min-height: 0;
   background: var(--background-secondary-color);
+  border-radius: 0px 0px 3px 3px;
 }
 
 #table-head {
@@ -152,7 +152,6 @@ export default {
 }
 
 #table-body {
-  border-radius: 0px 0px 3px 3px;
   overflow-y: scroll;
 }
 
@@ -196,5 +195,9 @@ export default {
 #bid-col:hover, #ask-col:hover {
   color: white;
   cursor: pointer
+}
+
+.spinner {
+  transform: scale(0.7);
 }
 </style>

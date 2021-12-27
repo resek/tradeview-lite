@@ -5,7 +5,7 @@
         src="@/assets/logo.svg"
         @click="goHomepage"
       >
-      <span>Tradeview</span>
+      <span>Tradeview Lite</span>
     </nav>
   </header>
 </template>
@@ -37,7 +37,7 @@ header nav {
   color: var(--text-dark-color);
   display: grid;
   align-items: center;
-  grid-template-columns: min-content min-content;
+  grid-template-columns: max-content max-content;
   gap: 1.5rem
 }
 
