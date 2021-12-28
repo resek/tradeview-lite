@@ -59,7 +59,7 @@ import axios from 'axios'
 
 export default {
   props: {
-    selectedPair: {
+    selectedPairSymbol: {
       type: String,
       default: 'btcusd'
     }
@@ -71,7 +71,7 @@ export default {
     }
   },
   watch: {
-    selectedPair: function () {
+    selectedPairSymbol: function () {
       this.asks = null
       this.bids = null
       this.getOrderBook()
@@ -83,7 +83,7 @@ export default {
   methods: {
     async getOrderBook () {
       try {
-        const response = await axios.get(`/api/v2/order_book/${this.selectedPair}`)
+        const response = await axios.get(`/api/v2/order_book/${this.selectedPairSymbol}`)
         if (response?.data?.asks?.length > 0) this.asks = response.data.asks.slice(0, 500)
         if (response?.data?.bids?.length > 0) this.bids = response.data.bids.slice(0, 500)
       } catch (e) {
@@ -102,15 +102,17 @@ export default {
 #order-book {
   color: var(--text-light-color);
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: 2rem 1fr;
   grid-column: 1 / 3;
 }
 
 #header {
   background-color: var(--box-header-color);
-  padding: 7px 20px;
+  padding-left: 2vw;
   border-radius: 3px 3px 0px 0px;
   font-size: 0.8rem;
+  display: grid;
+  align-items: center;
 }
 
 #table {
@@ -168,7 +170,7 @@ export default {
 }
 
 #bids > div:hover, #asks > div:hover {
-  background: rgba(84, 84, 84, 0.2);
+  background: var(--background-hover-color);
   cursor: default;
 }
 
@@ -193,7 +195,7 @@ export default {
 }
 
 #bid-col:hover, #ask-col:hover {
-  color: white;
+  color: var(--price-color);
   cursor: pointer
 }
 

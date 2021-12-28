@@ -1,10 +1,10 @@
 <template>
   <div id="tradeview">
     <SelectPair
-      @update-selected-pair="updateSelectedPair"
+      @update-selected-pair-symbol="updateSelectedPairSymbol"
     />
     <BuySell />
-    <OrderBook :selected-pair="selectedPair" />
+    <OrderBook :selected-pair-symbol="selectedPairSymbol" />
   </div>
 </template>
 
@@ -21,12 +21,12 @@ export default {
   },
   data () {
     return {
-      selectedPair: 'btcusd'
+      selectedPairSymbol: 'btcusd'
     }
   },
   methods: {
-    updateSelectedPair (pair) {
-      this.selectedPair = pair
+    updateSelectedPairSymbol (symbol) {
+      this.selectedPairSymbol = symbol
     }
   }
 }
@@ -52,7 +52,7 @@ export default {
 
 @media (max-width: 1100px) {
   #tradeview {
-    width: 95%
+    width: 95%;
   }
 }
 </style>

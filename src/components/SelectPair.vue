@@ -1,18 +1,28 @@
 <template>
   <div id="select-pair">
-    <Spinner v-if="loading" />
+    <div id="header">
+      <transition name="animation">
+        <div v-if="selectedPairPrices">
+          <span id="pair-name">{{ selectedPair.name.replace("/", " / ") }}</span>
+          <span>{{ currency }} <span id="price">{{ formatedPrice }}</span></span>
+        </div>
+      </transition>
+    </div>
+    <Spinner v-if="!tradingPairs" />
     <transition name="animation">
-      <div v-if="!loading">
-        <span>Price: {{ selectedPairPrices.last }}</span>
-        <select v-model="selectedPair">
-          <option
-            v-for="pair in tradingPairs"
-            :key="pair.url_symbol"
-            :value="pair.url_symbol"
-          >
-            {{ pair.name }}
-          </option>
-        </select>
+      <div
+        v-if="tradingPairs"
+        id="pairs"
+        class="scrollbar"
+      >
+        <div
+          v-for="(pair, index) in tradingPairs"
+          :key="pair.url_symbol"
+          :class="{active: activeElement === index}"
+          @click="selectPair(pair, index)"
+        >
+          {{ pair.name.replace("/", " / ") }}
+        </div>
       </div>
     </transition>
   </div>
@@ -22,23 +32,21 @@
 import axios from 'axios'
 
 export default {
-  emits: ['update-selected-pair'],
+  emits: ['update-selected-pair-symbol'],
   data () {
     return {
-      selectedPair: 'btcusd',
+      selectedPair: { url_symbol: 'btcusd', name: 'BTC/USD' },
       selectedPairPrices: null,
-      tradingPairs: null
+      tradingPairs: null,
+      activeElement: 0
     }
   },
   computed: {
-    loading () {
-      return !(this.tradingPairs && this.selectedPairPrices)
-    }
-  },
-  watch: {
-    selectedPair () {
-      this.getSelectedPairPrices()
-      this.$emit('update-selected-pair', this.selectedPair)
+    formatedPrice () {
+      return Number(this.selectedPairPrices.last).toLocaleString()
+    },
+    currency () {
+      return this.selectedPair.name.split('/').pop()
     }
   },
   created () {
@@ -48,7 +56,7 @@ export default {
   methods: {
     async getSelectedPairPrices () {
       try {
-        const response = await axios.get(`/api/v2/ticker/${this.selectedPair}/`)
+        const response = await axios.get(`/api/v2/ticker/${this.selectedPair.url_symbol}/`)
         if (response?.data) {
           this.selectedPairPrices = response.data
         }
@@ -61,10 +69,18 @@ export default {
         const response = await axios.get('/api/v2/trading-pairs-info/')
         if (response?.data?.length > 0) {
           this.tradingPairs = response.data
+          this.selectedPair = response.data[0]
         }
       } catch (e) {
         console.log('Failed to fetch', e)
       }
+    },
+    selectPair (pair, index) {
+      this.selectedPair = pair
+      this.activeElement = index
+      this.selectedPairPrices = null
+      this.getSelectedPairPrices()
+      this.$emit('update-selected-pair-symbol', this.selectedPair.url_symbol)
     }
   }
 }
@@ -74,8 +90,55 @@ export default {
 #select-pair {
   background-color: var(--background-secondary-color);
   border-radius: 3px;
-  color: var(--bid-color);
-  display: grid
+  display: grid;
+  grid-template-rows: 2rem 1fr;
+}
+
+#header {
+  background-color: var(--box-header-color);
+  padding-left: 2vw;
+  border-radius: 3px 3px 0px 0px;
+  font-size: 0.9rem;
+  color: var(--text-light-color);
+  display: grid;
+  align-items: center;
+}
+
+#header > div {
+  display: grid;
+  grid-template-columns: max-content auto;
+  gap: 2vw
+}
+
+#pair-name {
+  color: var(--pairs-color);
+  font-weight: bold;
+}
+
+#price {
+  color: var(--price-color);
+  font-weight: bold;
+}
+
+#pairs {
+  overflow-y: scroll;
+  color: var(--price-color);
+}
+
+#pairs > div {
+  cursor: pointer;
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+  padding-left: 2vw;
+  border-bottom: 1px solid var(--border-color);
+}
+
+#pairs > div:hover {
+  background: var(--background-hover-color);
+}
+
+.active {
+  color: var(--pairs-color);
 }
 
 .spinner {

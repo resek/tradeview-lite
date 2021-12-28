@@ -1,10 +1,13 @@
 :root {
   --background-color: #313337;
   --background-secondary-color: #18191B;
+  --background-hover-color: rgba(99, 102, 109, 0.6);
   --text-dark-color: #58595c;
   --text-light-color: #9598A2;
   --bid-color: #159f48;
   --ask-color: #fa4141;
+  --pairs-color: #64AEFE;
+  --price-color: #fff;
   --border-color: #313337;
   --box-header-color: #202124;
   --table-header-color: #1D1D21;
@@ -37,7 +40,7 @@
 }
   
 .animation-enter-active {
-  transition: opacity 0.3s ease-out;
+  transition: opacity 0.4s ease-out;
 }
   
 .animation-enter-to {
