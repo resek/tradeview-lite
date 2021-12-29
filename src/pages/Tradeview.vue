@@ -1,10 +1,8 @@
 <template>
   <div id="tradeview">
-    <SelectPair
-      @update-selected-pair-symbol="updateSelectedPairSymbol"
-    />
+    <SelectPair />
     <BuySell />
-    <OrderBook :selected-pair-symbol="selectedPairSymbol" />
+    <OrderBook />
   </div>
 </template>
 
@@ -18,16 +16,6 @@ export default {
     OrderBook,
     BuySell,
     SelectPair
-  },
-  data () {
-    return {
-      selectedPairSymbol: 'btcusd'
-    }
-  },
-  methods: {
-    updateSelectedPairSymbol (symbol) {
-      this.selectedPairSymbol = symbol
-    }
   }
 }
 </script>

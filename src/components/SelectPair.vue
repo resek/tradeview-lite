@@ -32,7 +32,6 @@
 import axios from 'axios'
 
 export default {
-  emits: ['update-selected-pair-symbol'],
   data () {
     return {
       selectedPair: { url_symbol: 'btcusd', name: 'BTC/USD' },
@@ -80,7 +79,7 @@ export default {
       this.activeElement = index
       this.selectedPairPrices = null
       this.getSelectedPairPrices()
-      this.$emit('update-selected-pair-symbol', this.selectedPair.url_symbol)
+      this.$store.commit('updateSelectedSymbol', this.selectedPair.url_symbol)
     }
   }
 }

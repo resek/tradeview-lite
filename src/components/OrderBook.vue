@@ -33,7 +33,10 @@
                 <span>0.54</span>
                 <span>{{ calculateValue(bid) }}</span>
                 <span>{{ bid[1] }}</span>
-                <span id="bid-col">{{ bid[0] }}</span>
+                <span
+                  id="bid-col"
+                  @click="toggleBuy(true, bid[0])"
+                >{{ bid[0] }}</span>
               </div>
             </div>
             <div id="asks">
@@ -41,7 +44,10 @@
                 v-for="(ask, index) in asks"
                 :key="index"
               >
-                <span id="ask-col">{{ ask[0] }}</span>
+                <span
+                  id="ask-col"
+                  @click="toggleBuy(false, ask[0])"
+                >{{ ask[0] }}</span>
                 <span>{{ ask[1] }}</span>
                 <span>{{ calculateValue(ask) }}</span>
                 <span>0.42</span>
@@ -58,12 +64,6 @@
 import axios from 'axios'
 
 export default {
-  props: {
-    selectedPairSymbol: {
-      type: String,
-      default: 'btcusd'
-    }
-  },
   data () {
     return {
       asks: null,
@@ -71,7 +71,7 @@ export default {
     }
   },
   watch: {
-    selectedPairSymbol: function () {
+    '$store.state.selectedSymbol': function () {
       this.asks = null
       this.bids = null
       this.getOrderBook()
@@ -83,7 +83,7 @@ export default {
   methods: {
     async getOrderBook () {
       try {
-        const response = await axios.get(`/api/v2/order_book/${this.selectedPairSymbol}`)
+        const response = await axios.get(`/api/v2/order_book/${this.$store.state.selectedSymbol}`)
         if (response?.data?.asks?.length > 0) this.asks = response.data.asks.slice(0, 500)
         if (response?.data?.bids?.length > 0) this.bids = response.data.bids.slice(0, 500)
       } catch (e) {
@@ -93,6 +93,9 @@ export default {
     calculateValue (data) {
       const value = data[0] * data[1]
       return (Math.round(value * 100) / 100).toLocaleString()
+    },
+    toggleBuy (buy, tradePrice) {
+      this.$store.commit('toggleBuy', { buy, tradePrice })
     }
   }
 }
