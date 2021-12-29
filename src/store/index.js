@@ -4,7 +4,8 @@ export default createStore({
   state: {
     selectedSymbol: 'btcusd',
     buy: true,
-    tradePrice: null
+    tradePrice: null,
+    currency: null
   },
   mutations: {
     toggleBuy (state, payload) {
@@ -13,6 +14,9 @@ export default createStore({
     },
     updateSelectedSymbol (state, symbol) {
       state.selectedSymbol = symbol
+    },
+    updateCurrency (state, currency) {
+      state.currency = currency
     }
   }
 })

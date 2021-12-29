@@ -13,10 +13,11 @@
         >Sell</span>
       </span>
     </div>
-    <input
+    <Input
       v-model="tradePrice"
-      :placeholder="$store.state.buy ? 'Buy' : 'Sell'"
-    >
+      :placeholder="placeholder"
+      :text="$store.state.currency"
+    />
     <div
       id="main-button"
       :class="$store.state.buy ? 'buy-bg' : 'sell-bg'"
@@ -27,11 +28,21 @@
 </template>
 
 <script>
+import Input from './ui/Input.vue'
+
 export default {
+  components: {
+    Input
+  },
   data () {
     return {
       buy: true,
       tradePrice: null
+    }
+  },
+  computed: {
+    placeholder () {
+      return this.$store.state.buy ? 'If prices rises to' : 'If prices falls to'
     }
   },
   watch: {
@@ -84,21 +95,15 @@ export default {
 }
 
 #main-button {
-  width: 60%;
+  color: var(--price-color);
+  width: 50%;
   align-self: center;
   justify-self: center;
   font-size: 1.2rem;
-  padding: 0.5rem 0;
+  padding: 0.4rem 0;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 3px;
   cursor: not-allowed
-}
-
-input {
-  height: 30px;
-  width: 200px;
-  align-self: center;
-  justify-self: center;
 }
 
 .buy-btn {
@@ -111,9 +116,11 @@ input {
 
 .buy-bg {
   background-color: var(--bid-color);
+  transition: 0.4s;
 }
 
 .sell-bg {
-  background-color: var(--ask-color);;
+  background-color: var(--ask-color);
+  transition: 0.4s;
 }
 </style>

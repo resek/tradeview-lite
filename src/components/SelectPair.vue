@@ -45,7 +45,9 @@ export default {
       return Number(this.selectedPairPrices.last).toLocaleString()
     },
     currency () {
-      return this.selectedPair.name.split('/').pop()
+      const currency = this.selectedPair.name.split('/').pop()
+      this.$store.commit('updateCurrency', currency)
+      return currency
     }
   },
   created () {
