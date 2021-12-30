@@ -21,15 +21,16 @@ export default {
 <style scoped>
 #input-container {
   height: max-content;
-  align-self: center;
-  justify-self: center;
   border: 1px solid var(--input-border-color);
   border-radius: 3px;
+  display: grid;
+  grid-template-columns: auto max-content;
 }
 
 #input-container > span {
   padding-right: 1vw;
   color: var(--text-dark-color);
+  align-self: center;
 }
 
 input {

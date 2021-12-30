@@ -18,21 +18,21 @@
       :placeholder="placeholder"
       :text="$store.state.currency"
     />
-    <div
-      id="main-button"
-      :class="$store.state.buy ? 'buy-bg' : 'sell-bg'"
-    >
-      {{ $store.state.buy ? "Buy" : "Sell" }}
-    </div>
+    <Button
+      :text="$store.state.buy ? 'Buy' : 'Sell'"
+      :color-class="$store.state.buy ? 'buy-bg' : 'sell-bg'"
+    />
   </div>
 </template>
 
 <script>
 import Input from './ui/Input.vue'
+import Button from './ui/Button.vue'
 
 export default {
   components: {
-    Input
+    Input,
+    Button
   },
   data () {
     return {
@@ -94,16 +94,15 @@ export default {
   color: var(--price-color)
 }
 
+#input-container {
+  width: 70%;
+  place-self: center;
+}
+
 #main-button {
-  color: var(--price-color);
   width: 50%;
-  align-self: center;
-  justify-self: center;
-  font-size: 1.2rem;
-  padding: 0.4rem 0;
-  text-align: center;
-  border-radius: 3px;
-  cursor: not-allowed
+  cursor: not-allowed;
+  place-self: center;
 }
 
 .buy-btn {

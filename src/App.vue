@@ -1,14 +1,14 @@
 <template>
-  <TheHeader />
+  <Header />
   <router-view />
 </template>
 
 <script>
-import TheHeader from './components/layout/TheHeader.vue'
+import Header from './components/layout/Header.vue'
 
 export default {
   components: {
-    TheHeader
+    Header
   }
 }
 </script>
