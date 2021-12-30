@@ -62,7 +62,7 @@ export default {
           this.selectedPairPrices = response.data
         }
       } catch (e) {
-        console.log('Failed to fetch', e)
+        console.error('Failed to fetch', e)
       }
     },
     async getTradingPairs () {
@@ -73,7 +73,7 @@ export default {
           this.selectedPair = response.data[0]
         }
       } catch (e) {
-        console.log('Failed to fetch', e)
+        console.error('Failed to fetch', e)
       }
     },
     selectPair (pair, index) {
