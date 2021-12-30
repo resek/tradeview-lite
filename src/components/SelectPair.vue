@@ -3,7 +3,7 @@
     <div id="header">
       <transition name="animation">
         <div v-if="selectedPairPrices">
-          <span id="pair-name">{{ selectedPair.name.replace("/", " / ") }}</span>
+          <span id="pair-name">{{ addSlashSpace( selectedPair.name) }}</span>
           <span>{{ currency }} <span id="price">{{ formatedPrice }}</span></span>
         </div>
       </transition>
@@ -21,7 +21,7 @@
           :class="{active: activeElement === index}"
           @click="selectPair(pair, index)"
         >
-          {{ pair.name.replace("/", " / ") }}
+          {{ addSlashSpace(pair.name) }}
         </div>
       </div>
     </transition>
@@ -62,7 +62,7 @@ export default {
           this.selectedPairPrices = response.data
         }
       } catch (e) {
-        console.warn('Failed to fetch', e)
+        console.error('Failed to fetch', e)
       }
     },
     async getTradingPairs () {
@@ -73,8 +73,11 @@ export default {
           this.selectedPair = response.data[0]
         }
       } catch (e) {
-        console.warn('Failed to fetch', e)
+        console.error('Failed to fetch', e)
       }
+    },
+    addSlashSpace (name) {
+      return name.replace('/', ' / ')
     },
     selectPair (pair, index) {
       this.selectedPair = pair
