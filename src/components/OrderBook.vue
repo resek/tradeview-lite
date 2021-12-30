@@ -87,7 +87,7 @@ export default {
         if (response?.data?.asks?.length > 0) this.asks = response.data.asks.slice(0, 500)
         if (response?.data?.bids?.length > 0) this.bids = response.data.bids.slice(0, 500)
       } catch (e) {
-        console.error('Failed to fetch', e)
+        console.warn('Failed to fetch', e)
       }
     },
     calculateValue (data) {
