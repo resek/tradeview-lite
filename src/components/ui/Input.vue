@@ -41,6 +41,7 @@ input {
   background-color: var(--background-secondary-color);
   padding-left: 1vw;
   font-size: 1rem;
+  width: 100%
 }
 
 #input-container:focus-within {

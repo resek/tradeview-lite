@@ -74,7 +74,7 @@ export default {
   color: var(--text-light-color);
   display: grid;
   align-items: center;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto auto;
 }
 
 #header-buttons {
@@ -121,5 +121,11 @@ export default {
 .sell-bg {
   background-color: var(--ask-color);
   transition: 0.4s;
+}
+
+@media (max-width: 650px) {
+  #input-container {
+  width: 90%;
+  }
 }
 </style>

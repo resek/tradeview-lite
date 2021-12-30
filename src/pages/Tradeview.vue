@@ -25,16 +25,16 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 40% 60%;
-  width: 80%;
+  width: 75%;
   margin: auto;
   margin-top: 0.5rem;
   gap: 0.5rem;
   height: calc(100vh - 4.5rem);
 }
 
-@media (min-width: 1800px) {
+@media (min-width: 1650px) {
   #tradeview {
-    width: 60%
+    width: 50%
   }
 }
 
