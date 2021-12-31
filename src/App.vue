@@ -27,10 +27,21 @@ html {
 body {
   margin: 0;
   background: var(--background-color);
-
 }
 
 #app {
   height: 100vh
+}
+
+@media (max-width: 650px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1599px) {
+  html {
+    font-size: 18px;
+  }
 }
 </style>

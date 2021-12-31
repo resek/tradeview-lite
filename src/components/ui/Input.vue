@@ -45,7 +45,7 @@ input {
 }
 
 #input-container:focus-within {
-    border: 1px solid var(--input-outline-color);
+  border: 1px solid var(--input-outline-color);
 }
 
 input:focus {

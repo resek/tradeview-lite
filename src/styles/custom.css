@@ -16,21 +16,21 @@
 }
 
 .scrollbar {
-    scrollbar-color: var(--text-dark-color) rgba(255, 0, 0, 0);
-    scrollbar-width: thin;
+  scrollbar-color: var(--text-dark-color) rgba(255, 0, 0, 0);
+  scrollbar-width: thin;
 }
 
 .scrollbar::-webkit-scrollbar {
-    width: 5px;
+  width: 5px;
 }
   
 .scrollbar::-webkit-scrollbar-track {
-    background: rgba(255, 0, 0, 0);
+  background: rgba(255, 0, 0, 0);
 }
   
 .scrollbar::-webkit-scrollbar-thumb {
-    background: var(--text-dark-color);
-    border-radius: 100vw;
+  background: var(--text-dark-color);
+  border-radius: 100vw;
 }
 
 .scrollbar::-webkit-scrollbar-thumb:hover {

@@ -38,7 +38,7 @@ header nav {
   display: grid;
   align-items: center;
   grid-template-columns: max-content max-content;
-  gap: 1.5rem
+  gap: 2.5vw
 }
 
 header nav img {

@@ -28,7 +28,7 @@ export default {
   width: 75%;
   margin: auto;
   margin-top: 0.5rem;
-  gap: 0.5rem;
+  gap: 0.5vw;
   height: calc(100vh - 4.5rem);
 }
 
@@ -38,9 +38,9 @@ export default {
   }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1000px) {
   #tradeview {
-    width: 95%;
+    width: 98%;
   }
 }
 </style>

@@ -95,7 +95,7 @@ export default {
 }
 
 #input-container {
-  width: 70%;
+  width: 65%;
   place-self: center;
 }
 
