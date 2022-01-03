@@ -9,8 +9,8 @@ export default createStore({
   },
   mutations: {
     toggleBuy (state, payload) {
-      state.buy = payload.buy
-      if (payload.tradePrice) state.tradePrice = payload.tradePrice
+      if (payload.buy !== undefined) state.buy = payload.buy
+      if (payload.tradePrice !== undefined) state.tradePrice = payload.tradePrice
     },
     updateSelectedSymbol (state, symbol) {
       state.selectedSymbol = symbol

@@ -84,6 +84,7 @@ export default {
       this.activeElement = index
       this.selectedPairPrices = null
       this.getSelectedPairPrices()
+      this.$store.commit('toggleBuy', { tradePrice: null })
       this.$store.commit('updateSelectedSymbol', this.selectedPair.url_symbol)
     }
   }

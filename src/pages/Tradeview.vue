@@ -34,7 +34,7 @@ export default {
 
 @media (min-width: 1650px) {
   #tradeview {
-    width: 50%
+    width: 55%
   }
 }
 

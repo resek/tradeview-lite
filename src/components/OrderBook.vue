@@ -107,13 +107,13 @@ export default {
   display: grid;
   grid-template-rows: 2rem 1fr;
   grid-column: 1 / 3;
+  font-size: 0.8rem;
 }
 
 #header {
   background-color: var(--box-header-color);
   padding-left: 2vw;
   border-radius: 3px 3px 0px 0px;
-  font-size: 0.8rem;
   display: grid;
   align-items: center;
 }
@@ -129,27 +129,26 @@ export default {
 #table-head {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 5px 0;
+  padding: 0.4rem 0;
   background-color: var(--table-header-color);
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
-  font-size: 0.8rem;
-  color: var(--text-dark-color);;
-}
-
-#table-head > span {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  justify-items: end;
+  color: var(--text-dark-color);
 }
 
 #table-head > span:first-of-type {
-  padding-right: 10px;
+  grid-template-columns: 15% 25% 1fr max-content;
+  display: grid;
+  gap: 1vw;
+  padding: 0 1.5vw;
 }
 
 #table-head > span:last-of-type {
-  padding-right: 20px;
-  padding-left: 10px;
+  padding: 0 1.5vw;
+  grid-template-columns: max-content 1fr 25% 15%;
+  display: grid;
+  justify-items: end;
+  gap: 1vw
 }
 
 #table-ask-title {
@@ -158,6 +157,7 @@ export default {
 
 #table-body {
   overflow-y: scroll;
+  font-size: 0.9rem;
 }
 
 #table-body > div {
@@ -165,25 +165,24 @@ export default {
   grid-template-columns: 1fr 1fr;
 }
 
-#bids > div, #asks > div {
+#bids > div {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 15% 25% 1fr max-content;
+  gap: 1vw;
+  padding: 0.2rem 1.5vw;
+}
+
+#asks > div {
+  display: grid;
+  grid-template-columns: max-content 1fr 25% 15%;
   justify-items: end;
-  padding: 3px 0px 3px 0;
+  padding: 0.2rem 1.2vw 0.2rem 1.5vw;
+  gap: 1vw
 }
 
 #bids > div:hover, #asks > div:hover {
   background: var(--background-hover-color);
   cursor: default;
-}
-
-#asks > div {
-  padding-right: 15px;
-  padding-left: 10px
-}
-
-#bids > div {
-  padding-right: 10px;
 }
 
 #ask-col {
@@ -204,5 +203,17 @@ export default {
 
 .spinner {
   transform: scale(0.7);
+}
+
+@media (max-width: 560px) {
+  #table-body {
+  font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 450px) {
+  #table-body {
+  font-size: 0.6rem;
+  }
 }
 </style>
