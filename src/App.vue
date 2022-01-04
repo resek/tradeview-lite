@@ -39,7 +39,7 @@ body {
   }
 }
 
-@media (min-width: 1599px) {
+@media (min-width: 1550px) {
   html {
     font-size: 18px;
   }

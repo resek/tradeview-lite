@@ -25,14 +25,14 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 40% 60%;
-  width: 75%;
+  width: 70%;
   margin: auto;
   margin-top: 0.5rem;
   gap: 0.5vw;
   height: calc(100vh - 4.5rem);
 }
 
-@media (min-width: 1650px) {
+@media (min-width: 1550px) {
   #tradeview {
     width: 55%
   }
