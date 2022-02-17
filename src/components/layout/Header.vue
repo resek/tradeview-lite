@@ -5,7 +5,7 @@
         src="@/assets/logo.svg"
         @click="goHomepage"
       >
-      <span>Tradeview Lite</span>
+      <span>Tradeview</span>
     </nav>
   </header>
 </template>
